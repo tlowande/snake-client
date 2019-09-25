@@ -18,12 +18,16 @@ const connect = function() {
     if(net.Socket) {
       console.log('Successfully connected to game server');
     }
-    conn.write('Name: T4T')});
+    conn.write('Name: T4T');
+    setInterval(() => setTimeout(() => {conn.write(/*'Move: up'*/)}, 50),60)
+    
+    
+  });
 
 
   return conn;
 }
-
+//,,'Move: down','Move: left', 'Move: right'
 
 
 module.exports = connect

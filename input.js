@@ -31,6 +31,9 @@ const handleUserInput = (conn, input) => {
       clearInterval(intervalId);
       intervalId = nextId;
     }
+    if (input === 'h') {
+      conn.write('Say: this is painful');
+    }
   }
 
 const setupInput = function(conn) {

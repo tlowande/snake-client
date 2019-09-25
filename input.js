@@ -4,31 +4,38 @@ stdin.setRawMode(true);
 
 stdin.setEncoding('utf8');
 
-let connection;
+let intervalId;
+let nextId;
 
-const handleUserInput = () => {
-  stdin.on("data", (input) => {
+const handleUserInput = (conn, input) => {
     if (input === '\u0003') {
       process.exit()
     } 
     if (input === 'w') {
-      connection.write('Move: up');
+      nextId = setInterval(() => conn.write('Move: up'),100);
+      clearInterval(intervalId);
+      intervalId = nextId;
     }
     if (input === 'a') {
-      connection.write('Move: down');
-    }
-    if (input === 's') {
-      connection.write('Move: left');
+      nextId = setInterval(() => conn.write('Move: left'),100);
+      clearInterval(intervalId);
+      intervalId = nextId;
     }
     if (input === 'd') {
-      connection.write('Move: right');
+      nextId = setInterval(() => conn.write('Move: right'),100);
+      clearInterval(intervalId);
+      intervalId = nextId;
     }
-  })
-} 
+    if (input === 'x') {
+      nextId = setInterval(() => conn.write('Move: down'),100);
+      clearInterval(intervalId);
+      intervalId = nextId;
+    }
+  }
 
 const setupInput = function(conn) {
-  connection = conn;
-  handleUserInput()
+
+  stdin.on('data', (data) => handleUserInput(conn, data))
   stdin.resume();
   
   return stdin;

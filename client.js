@@ -19,7 +19,8 @@ const connect = function() {
       console.log('Successfully connected to game server');
     }
     conn.write('Name: T4T');
-    setInterval(() => setTimeout(() => {conn.write(/*'Move: up'*/)}, 50),60)
+
+    // setInterval(() => setTimeout(() => {conn.write(/*'Move: up'*/)}, 50),60)
     
     
   });

@@ -14,6 +14,13 @@ const connect = function() {
     console.log('Server says: ', data);
   });
 
+  conn.on('connect', () => {
+    if(net.Socket) {
+      console.log('Successfully connected to game server');
+    }
+    conn.write('Name: T4T')});
+
+
   return conn;
 }
 
